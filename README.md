@@ -1,13 +1,15 @@
 # mongodb-sharding-docker-compose
 
-docker-compose stack that allows you to turn on a full MongoDB sharded cluster with the following components :
+:whale: docker-compose stack that allows you to turn on a full MongoDB sharded cluster with the following components :
 
  * configserver replicaset: 3x mongod with configsrv enabled 
  * first replicaset shard: 3x mongod 
  * second replicaset shard: 3x mongod
  * third replicaset shard: 3x mongod
  * mongo query router: 1x mongos
--
+
+
+:warning: Of course this is for development purpose only  
 
     # Usage :
     $ git clone git@github.com:jfollenfant/mongodb-sharding-docker-compose.git
@@ -15,7 +17,7 @@ docker-compose stack that allows you to turn on a full MongoDB sharded cluster w
     $ ./up.sh
     
 
-Then you should be able to log into the cluster:
+:tropical_drink: Then you should be able to log into the cluster:
 
     $ docker exec -it mongodbdocker_mongo-router-01_1 mongo
     MongoDB shell version v3.4.2
@@ -34,3 +36,9 @@ Then you should be able to log into the cluster:
     2017-03-27T11:54:56.801+0000 I CONTROL  [main]
     mongos>
 
+
+   # TODO
+   
+  * Setup global auth + cluster auth key
+  * Generate random data to populate shards through balancing 
+  
