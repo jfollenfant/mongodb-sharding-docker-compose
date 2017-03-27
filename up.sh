@@ -1,5 +1,13 @@
 #!/bin/bash
 
+## Composer project name instead of git main folder name
+export COMPOSE_PROJECT_NAME=mongodbdocker
+
+## Generate global auth key between cluster nodes
+openssl rand -base64 756 > mongodb.key
+chmod 400 mongodb.key
+
+## Start the whole stack
 docker-compose up -d 
 
 ## Config servers setup
@@ -20,3 +28,7 @@ docker exec -it mongodbdocker_mongo-shard-03a_1 sh -c "mongo --port 27020 < /mon
 sleep 15
 docker cp mongo-sharding.init.js mongodbdocker_mongo-router-01_1:/
 docker exec -it mongodbdocker_mongo-router-01_1 sh -c "mongo --port 27017 < /mongo-sharding.init.js"
+
+## Enable admin account
+docker cp mongo-auth.init.js mongodbdocker_mongo-router-01_1:/
+docker exec -it mongodbdocker_mongo-router-01_1 sh -c "mongo --port 27017 < /mongo-auth.init.js"
