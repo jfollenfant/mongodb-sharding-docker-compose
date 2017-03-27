@@ -37,7 +37,7 @@
     mongos>
 
 
-   # TODO
+   # TODO :construction:
    
   * Setup global auth + cluster auth key
   * Generate random data to populate shards through balancing 
