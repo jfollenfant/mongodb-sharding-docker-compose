@@ -8,7 +8,7 @@ docker-compose stack that allows you to turn on a full MongoDB sharded cluster w
  * third replicaset shard: 3x mongod
  * mongo query router: 1x mongos
  
-    # Usage:
+     ## Usage:
     $ git clone git@github.com:jfollenfant/mongodb-sharding-docker-compose.git
     $ mongodb-sharding-docker-compose
     $ ./up.sh
