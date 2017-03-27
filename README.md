@@ -7,7 +7,7 @@
  * second replicaset shard: 3x mongod
  * third replicaset shard: 3x mongod
  * mongo query router: 1x mongos
-
+ * authentication enabled + global auth key certificate between nodes
 
 :warning: Of course this is for development purpose only  
 
