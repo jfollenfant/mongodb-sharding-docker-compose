@@ -41,4 +41,6 @@
    
   * Setup global auth + cluster auth key
   * Generate random data to populate shards through balancing 
+  * Update compose syntax to v3 
+  * Use swarm capabilities for production grade deployment 
   
