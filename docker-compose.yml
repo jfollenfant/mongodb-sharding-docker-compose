@@ -1,0 +1,67 @@
+version: '2'
+services:
+
+  # Premier replicaset de trois config servers pour les metadata
+  mongo-configserver-01:
+    image: mongo
+    command: mongod --port 27017 --noprealloc --smallfiles --replSet mongo-configserver --dbpath /data/db --nojournal --oplogSize 16 --noauth
+  mongo-configserver-02:
+    image: mongo
+    command: mongod --port 27017 --noprealloc --smallfiles --replSet mongo-configserver --dbpath /data/db --nojournal --oplogSize 16 --noauth
+  mongo-configserver-03:
+    image: mongo
+    command: mongod --port 27017 --noprealloc --smallfiles --replSet mongo-configserver --dbpath /data/db --nojournal --oplogSize 16 --noauth
+
+  # Premier shard de trois mongod pour les data 
+  mongo-shard-01a:
+    image: mongo
+    command: mongod --port 27018 --noprealloc --smallfiles --replSet mongo-shard-01 --dbpath /data/db --nojournal --oplogSize 16 --noauth
+  mongo-shard-01b:
+    image: mongo
+    command: mongod --port 27018 --noprealloc --smallfiles --replSet mongo-shard-01 --dbpath /data/db --nojournal --oplogSize 16 --noauth
+  mongo-shard-01c:
+    image: mongo
+    command: mongod --port 27018 --noprealloc --smallfiles --replSet mongo-shard-01 --dbpath /data/db --nojournal --oplogSize 16 --noauth
+
+  # Deuxieme shard de trois mongod pour les data
+  mongo-shard-02a:
+    image: mongo
+    command: mongod --port 27019 --noprealloc --smallfiles --replSet mongo-shard-02 --dbpath /data/db --nojournal --oplogSize 16 --noauth
+  mongo-shard-02b:
+    image: mongo
+    command: mongod --port 27019 --noprealloc --smallfiles --replSet mongo-shard-02 --dbpath /data/db --nojournal --oplogSize 16 --noauth
+  mongo-shard-02c:
+    image: mongo
+    command: mongod --port 27019 --noprealloc --smallfiles --replSet mongo-shard-02 --dbpath /data/db --nojournal --oplogSize 16 --noauth
+
+  # Troisieme shard de trois mongod pour les data
+  mongo-shard-03a:
+    image: mongo
+    command: mongod --port 27020 --noprealloc --smallfiles --replSet mongo-shard-03 --dbpath /data/db --nojournal --oplogSize 16 --noauth
+  mongo-shard-03b:
+    image: mongo
+    command: mongod --port 27020 --noprealloc --smallfiles --replSet mongo-shard-03 --dbpath /data/db --nojournal --oplogSize 16 --noauth
+  mongo-shard-03c:
+    image: mongo
+    command: mongod --port 27020 --noprealloc --smallfiles --replSet mongo-shard-03 --dbpath /data/db --nojournal --oplogSize 16 --noauth
+
+  # Mongo router
+  mongo-router-01:
+    image: mongo
+    command: mongos --port 27017 --configdb mongo-configserver/mongo-configserver-01:27017,mongo-configserver-02:27017,mongo-configserver-03:27017
+    #ports:
+    #  - "27017:27017"
+    depends_on:
+      - mongo-configserver-01
+      - mongo-configserver-02
+      - mongo-configserver-03
+      - mongo-shard-01a
+      - mongo-shard-01b
+      - mongo-shard-01c
+      - mongo-shard-02a
+      - mongo-shard-02b
+      - mongo-shard-02c
+      - mongo-shard-03a
+      - mongo-shard-03b
+      - mongo-shard-03c
+
