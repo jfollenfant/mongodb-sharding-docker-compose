@@ -1,6 +1,7 @@
 rs.initiate(
    {
       _id: "mongo-configserver",
+      configsvr: true,
       version: 1,
       members: [
          { _id: 0, host : "mongo-configserver-01:27017" },
