@@ -23,6 +23,6 @@ docker exec -it mongodbdocker_mongo-shard-03a_1 sh -c "mongo --port 27020 < /mon
 #################
 # Apply sharding
 #################
-sleep 5
+sleep 15
 docker cp mongo-sharding.init.js mongodbdocker_mongo-router-01_1:/
 docker exec -it mongodbdocker_mongo-router-01_1 sh -c "mongo --port 27017 < /mongo-sharding.init.js"
