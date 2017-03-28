@@ -16,6 +16,17 @@
     $ mongodb-sharding-docker-compose
     $ ./up.sh
     
+    
+You can also edit mongo-auth.init.js to change admin credentials before turning up the cluster
+
+    admin = db.getSiblingDB("admin")
+    admin.createUser(
+      {
+         user: "admin",
+         pwd: "admin",
+         roles: [ { role: "userAdminAnyDatabase", db: "admin" } ] 
+      }
+    )
 
 :tropical_drink: Then you should be able to log into the cluster:
 
@@ -37,6 +48,12 @@
     mongos>
 
 
+
+:beer: And turn it down with:
+
+    $ ./down.sh
+    
+    
    # TODO :construction:
    
   * Generate random data to populate shards through balancing 
