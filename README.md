@@ -30,24 +30,13 @@ You can also edit mongo-auth.init.js to change admin credentials before turning 
 
 :tropical_drink: Then you should be able to log into the cluster:
 
-    $ docker exec -it mongodbdocker_mongo-router-01_1 mongo
+    $ docker exec -it mongodbdocker_mongo-router-01_1 mongo admin  -u'admin' -p'admin'
     MongoDB shell version v3.4.2
-    connecting to: mongodb://127.0.0.1:27017
+    connecting to: mongodb://127.0.0.1:27017/admin
     MongoDB server version: 3.4.2
-    Welcome to the MongoDB shell.
-    For interactive help, type "help".
-    For more comprehensive documentation, see
-         	http://docs.mongodb.org/
-    Questions? Try the support group
-        	http://groups.google.com/group/mongodb-user
-    Server has startup warnings:
-    2017-03-27T11:54:56.800+0000 I CONTROL  [main]
-    2017-03-27T11:54:56.801+0000 I CONTROL  [main] ** WARNING: Access control is not enabled for the database.
-    2017-03-27T11:54:56.801+0000 I CONTROL  [main] **          Read and write access to data and configuration is unrestricted.
-    2017-03-27T11:54:56.801+0000 I CONTROL  [main]
     mongos>
-
-
+    
+  
 
 :beer: And turn it down with:
 
