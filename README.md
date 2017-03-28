@@ -17,7 +17,7 @@
     $ ./up.sh
     
     
-:beer: You can also edit mongo-auth.init.js to change admin credentials before turning up the cluster
+You can also edit mongo-auth.init.js to change admin credentials before turning up the cluster
 
     admin = db.getSiblingDB("admin")
     admin.createUser(
@@ -48,8 +48,11 @@
     mongos>
 
 
-    :beer: # And turn it down with :
+
+:beer: And turn it down with:
+
     $ ./down.sh
+    
     
    # TODO :construction:
    
